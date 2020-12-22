@@ -3,13 +3,14 @@ package com.fiesta.detector
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.fiesta.detector.fragments.PoiListFragment
 import com.fiesta.detector.fragments.MapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val mapFragment = MapFragment()
-    private val listFragment = MapFragment()
+    private val listFragment = PoiListFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
