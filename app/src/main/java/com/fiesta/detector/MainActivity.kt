@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val mapFragment = MapFragment()
+    private val listFragment = MapFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorite_list -> {
+                setCurrentFragment(listFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_pictures -> {
