@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import com.fiesta.detector.fragments.PoiListFragment
 import com.fiesta.detector.fragments.MapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val mapFragment = MapFragment()
     private val listFragment = PoiListFragment()

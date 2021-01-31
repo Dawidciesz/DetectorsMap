@@ -12,7 +12,8 @@ import java.text.DateFormat
 data class Poi (
     val name: String,
     val description: String,
-    val location: LatLng,
+    val latitude: Double,
+    val longtitude: Double,
     val created: Long = System.currentTimeMillis(),
     @PrimaryKey( autoGenerate = true) val id: Int = 0
     ) : Parcelable {
