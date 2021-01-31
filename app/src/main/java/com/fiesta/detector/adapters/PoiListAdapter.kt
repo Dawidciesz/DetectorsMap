@@ -1,53 +1,40 @@
 package com.fiesta.detector.adapters
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.fiesta.detector.R
-import com.fiesta.detector.utility.ListItems
+import com.fiesta.detector.data.Poi
+import com.fiesta.detector.databinding.ListItemBinding
 
-class PoiListAdapter(private val dataSet: ArrayList<ListItems>) :
-    RecyclerView.Adapter<PoiListAdapter.ViewHolder>() {
+class PoiListAdapter : ListAdapter<Poi, PoiListAdapter.PoiViewHolder>(DiffCallback()) {
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView
-        val name: TextView
-        val description: TextView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PoiViewHolder {
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PoiViewHolder(binding)
+    }
 
-        init {
-            // Define click listener for the ViewHolder's View.
-            image = view.findViewById(R.id.itemImage)
-            name = view.findViewById(R.id.itemName)
-            description = view.findViewById(R.id.itemDescription)
+    override fun onBindViewHolder(holder: PoiViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+    class PoiViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(poi : Poi) {
+            binding.apply {
+                itemImage
+                itemName.text = poi.name
+                itemDescription.text = poi.description
+            }
         }
     }
 
-    // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.list_item, viewGroup, false)
+    class DiffCallback : DiffUtil.ItemCallback<Poi>() {
+        override fun areItemsTheSame(oldItem: Poi, newItem: Poi) =
+            oldItem.id == newItem.id
 
-        return ViewHolder(view)
+        override fun areContentsTheSame(oldItem: Poi, newItem: Poi) =
+            oldItem == newItem
     }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-//        viewHolder.image.setImageDrawable() = dataSet[position].getImage
-        viewHolder.name.text = dataSet[position].name
-        viewHolder.description.text = dataSet[position].description
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
 
 }
