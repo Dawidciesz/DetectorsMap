@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface PoiDao {
 
     @Query("SELECT * FROM poi_table")
-    fun getTasks(): Flow<List<Poi>>
+    fun getPois(): Flow<List<Poi>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(poi: Poi)

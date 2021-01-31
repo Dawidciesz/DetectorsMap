@@ -15,6 +15,7 @@ abstract class PoiDatabase : RoomDatabase() {
     abstract fun poiDao(): PoiDao
 
     class Callback @Inject constructor(
+
         private val database: Provider<PoiDatabase>,
         @ApplicationScope private val applicationScope: CoroutineScope
     ) : RoomDatabase.Callback() {

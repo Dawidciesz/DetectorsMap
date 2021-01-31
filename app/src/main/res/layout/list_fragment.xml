@@ -7,7 +7,7 @@
         tools:context=".fragments.PoiListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/poi_list_recycler_view"
             android:layout_width="0dp"
             android:layout_height="704dp"
             app:layout_constraintStart_toStartOf="parent"
