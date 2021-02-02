@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.EditPoiFragment">
+
+    <TextView
+            android:text="nazwa poi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="11dp"
+            app:layout_constraintBottom_toTopOf="@+id/edit_poi_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.833"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045" />
+
+    <EditText
+            android:id="@+id/edit_poi_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Task name"
+            android:inputType="text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+            android:text="opis poi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="13dp"
+            app:layout_constraintBottom_toTopOf="@+id/edit_poi_description"
+            android:layout_marginTop="41dp"
+            app:layout_constraintTop_toBottomOf="@+id/edit_poi_name"
+            app:layout_constraintVertical_bias="0.862"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044" />
+
+    <EditText
+            android:id="@+id/edit_poi_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="poi description"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="51dp"
+            app:layout_constraintTop_toBottomOf="@+id/edit_poi_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.097" />
+
+    <Button
+            android:text="zapisz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_save_button"
+            android:layout_marginTop="364dp"
+            app:layout_constraintTop_toBottomOf="@+id/edit_poi_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.845" />
+</androidx.constraintlayout.widget.ConstraintLayout>
