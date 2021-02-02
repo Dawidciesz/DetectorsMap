@@ -9,5 +9,27 @@
             android:id="@+id/mapFragment"
             android:name="com.fiesta.detector.fragments.MapFragment"
             android:label="MapFragment"
-            tools:layout="@layout/map_fragment"/>
+            tools:layout="@layout/map_fragment">
+        <action
+                android:id="@+id/action_mapFragment_to_poiListFragment"
+                app:destination="@id/poiListFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/poiListFragment"
+            android:name="com.fiesta.detector.fragments.PoiListFragment"
+            android:label="list_fragment"
+            tools:layout="@layout/list_fragment" >
+        <action
+                android:id="@+id/action_poiListFragment_to_editPoiFragment"
+                app:destination="@id/editPoiFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/editPoiFragment"
+            android:name="com.fiesta.detector.ui.EditPoiFragment"
+            android:label="edit_poi_fragment"
+            tools:layout="@layout/edit_poi_fragment" >
+        <argument
+                android:name="poi"
+                app:argType="com.fiesta.detector.data.Poi" />
+    </fragment>
 </navigation>
