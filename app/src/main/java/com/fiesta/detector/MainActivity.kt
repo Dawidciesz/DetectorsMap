@@ -2,53 +2,21 @@ package com.fiesta.detector
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.fiesta.detector.fragments.PoiListFragment
-import com.fiesta.detector.fragments.MapFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val mapFragment = MapFragment()
-    private val listFragment = PoiListFragment()
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.clearAnimation()
-        setCurrentFragment(mapFragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.findNavController()
+        navigation.setupWithNavController(navController)
     }
-
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_map -> {
-                setCurrentFragment(mapFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_favorite_list -> {
-                setCurrentFragment(listFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_pictures -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_settings -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_favorite_list -> {
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
-
-    private fun setCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment, fragment)
-            commit()
-        }
 }

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/navigation_map"
+            android:id="@+id/mapFragment2"
             android:icon="@drawable/map_icon"
             android:title="@string/title_map"/>
 
     <item
-            android:id="@+id/navigation_favorite_list"
+            android:id="@+id/poiListFragment2"
             android:icon="@drawable/list_icon"
             android:title="@string/title_favorite_list"/>
 
@@ -16,13 +16,13 @@
             android:icon="@drawable/home_icon"
             android:title="@string/title_Home"/>
 
-    <item
-            android:id="@+id/navigation_pictures"
-            android:icon="@drawable/picture_icon"
-            android:title="@string/title_pictures"/>
+<!--    <item-->
+<!--            android:id="@+id/navigation_pictures"-->
+<!--            android:icon="@drawable/picture_icon"-->
+<!--            android:title="@string/title_pictures"/>-->
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/setting_icon"
-        android:title="@string/title_settings"/>
+<!--    <item-->
+<!--        android:id="@+id/navigation_settings"-->
+<!--        android:icon="@drawable/setting_icon"-->
+<!--        android:title="@string/title_settings"/>-->
 </menu>

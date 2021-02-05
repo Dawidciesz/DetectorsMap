@@ -3,24 +3,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nav_graph"
-        app:startDestination="@id/mapFragment">
-
+        app:startDestination="@id/mapFragment2">
     <fragment
-            android:id="@+id/mapFragment"
+            android:id="@+id/mapFragment2"
             android:name="com.fiesta.detector.fragments.MapFragment"
-            android:label="MapFragment"
-            tools:layout="@layout/map_fragment">
-        <action
-                android:id="@+id/action_mapFragment_to_poiListFragment"
-                app:destination="@id/poiListFragment" />
-    </fragment>
+            android:label="map_fragment"
+            tools:layout="@layout/map_fragment" />
     <fragment
-            android:id="@+id/poiListFragment"
+            android:id="@+id/poiListFragment2"
             android:name="com.fiesta.detector.fragments.PoiListFragment"
             android:label="list_fragment"
             tools:layout="@layout/list_fragment" >
         <action
-                android:id="@+id/action_poiListFragment_to_editPoiFragment"
+                android:id="@+id/action_poiListFragment2_to_editPoiFragment"
                 app:destination="@id/editPoiFragment" />
     </fragment>
     <fragment
@@ -28,8 +23,9 @@
             android:name="com.fiesta.detector.ui.EditPoiFragment"
             android:label="edit_poi_fragment"
             tools:layout="@layout/edit_poi_fragment" >
-        <argument
-                android:name="poi"
-                app:argType="com.fiesta.detector.data.Poi" />
+        <argument android:name="poi"
+                app:argType="com.fiesta.detector.data.Poi"
+                app:nullable="true"
+                android:defaultValue="@null" />
     </fragment>
 </navigation>
