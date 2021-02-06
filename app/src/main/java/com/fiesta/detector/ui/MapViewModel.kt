@@ -25,18 +25,20 @@ class MapViewModel @ViewModelInject constructor(
         poiDao.delete(poi)
     }
 
-fun onSaveButtonClick(name: String, poiLatLang: LatLng) {
+fun onSaveButtonClick(name: String, poiLatLang: LatLng, uri: String) {
 
     if (name.isBlank()) {
         showInvalidInputMessage("Nazwa nie może być pusta")
     } else {
         viewModelScope.launch {
-            poiDao.insert(Poi(name, "bark opisu", poiLatLang.latitude, poiLatLang.longitude))
+            poiDao.insert(Poi(name, "bark opisu", poiLatLang.latitude, poiLatLang.longitude, uri))
             showInvalidInputMessage("Notatka zapisana")
         }
     }
 
 }
+
+
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
         mapEventChannel.send(MapEvents.ShowInputMessage(text))
     }

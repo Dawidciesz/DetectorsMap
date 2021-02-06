@@ -1,5 +1,8 @@
 package com.fiesta.detector.ui
 
+import android.content.Intent
+import android.provider.MediaStore
+import androidx.activity.result.ActivityResultLauncher
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
@@ -32,7 +35,6 @@ class EditPoiViewModel @ViewModelInject constructor(
             state.set("poiDescription", value)
         }
     fun onSaveButtonClick() {
-
         if (poiName.isBlank()) {
             showInvalidInputMessage("Nazwa nie może być pusta")
             }
@@ -43,6 +45,13 @@ class EditPoiViewModel @ViewModelInject constructor(
             }
         }
 
+    }
+
+    fun onSetImageButtonClick(uri: String) {
+        viewModelScope.launch {
+            poiDao.update(poi?.copy(uri = uri)!!)
+            showInvalidInputMessage("Notatka zapisana")
+        }
     }
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
         editPoiEventChannel.send(EditPoiEvent.ShowInputMessage(text))
