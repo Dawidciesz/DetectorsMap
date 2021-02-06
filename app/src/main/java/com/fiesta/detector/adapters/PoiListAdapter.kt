@@ -1,10 +1,12 @@
 package com.fiesta.detector.adapters
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.fiesta.detector.R
 import com.fiesta.detector.data.Poi
 import com.fiesta.detector.databinding.ListItemBinding
 
@@ -34,7 +36,9 @@ class PoiListAdapter(private val listener: OnItemClickListener) : ListAdapter<Po
 
         fun bind(poi : Poi) {
             binding.apply {
-                itemImage
+                if (poi.uri != "") {
+                    itemImage.setImageURI(Uri.parse(poi.uri))
+                }
                 itemName.text = poi.name
                 itemDescription.text = poi.description
             }
