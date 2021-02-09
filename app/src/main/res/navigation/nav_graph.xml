@@ -8,7 +8,16 @@
             android:id="@+id/mapFragment2"
             android:name="com.fiesta.detector.fragments.MapFragment"
             android:label="map_fragment"
-            tools:layout="@layout/map_fragment" />
+            tools:layout="@layout/map_fragment" >
+        <action
+                android:id="@+id/action_mapFragment2_to_editPoiFragment"
+                app:destination="@id/editPoiFragment" />
+        <argument
+                android:name="poi"
+                app:argType="com.fiesta.detector.data.Poi"
+                app:nullable="true"
+                android:defaultValue="@null" />
+    </fragment>
     <fragment
             android:id="@+id/poiListFragment2"
             android:name="com.fiesta.detector.fragments.PoiListFragment"
@@ -17,6 +26,9 @@
         <action
                 android:id="@+id/action_poiListFragment2_to_editPoiFragment"
                 app:destination="@id/editPoiFragment" />
+        <action
+                android:id="@+id/action_poiListFragment2_to_mapFragment2"
+                app:destination="@id/mapFragment2" />
     </fragment>
     <fragment
             android:id="@+id/editPoiFragment"

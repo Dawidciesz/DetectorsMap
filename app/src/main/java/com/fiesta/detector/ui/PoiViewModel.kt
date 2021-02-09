@@ -24,11 +24,16 @@ class PoiViewModel @ViewModelInject constructor(
         poiDao.delete(poi)
     }
 
-    fun onPoiSelected(poi : Poi) = viewModelScope.launch {
+    fun onPoiDetailsSelected(poi: Poi) = viewModelScope.launch {
         poisEventChannel.send(PoiEvents.NavigateToEditPoiScreen(poi))
     }
 
+    fun onPoiZoomSelected(poi: Poi) = viewModelScope.launch {
+        poisEventChannel.send(PoiEvents.NavigateToMapScreen(poi))
+    }
+
     sealed class PoiEvents {
-        data class NavigateToEditPoiScreen(val poi : Poi) : PoiEvents()
+        data class NavigateToEditPoiScreen(val poi: Poi) : PoiEvents()
+        data class NavigateToMapScreen(val poi: Poi) : PoiEvents()
     }
 }

@@ -23,7 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class PoiListFragment : Fragment(), PoiListAdapter.OnItemClickListener {
+class PoiListFragment : Fragment(), PoiListAdapter.OnDetailsClickListener,
+    PoiListAdapter.OnZoomLocationClickListener {
     private val viewModel: PoiViewModel by viewModels()
 
     override fun onCreateView(
@@ -37,14 +38,13 @@ class PoiListFragment : Fragment(), PoiListAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = ListFragmentBinding.bind(view)
-        val poiListAdapter = PoiListAdapter(this)
+        val poiListAdapter = PoiListAdapter(this, this)
         binding.apply {
             poiListRecyclerView.apply {
                 adapter = poiListAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
             }
-
             ItemTouchHelper(object : SwipeToDeleteCallback(requireContext()) {
                 override fun onMove(
                     recyclerView: RecyclerView,
@@ -58,21 +58,25 @@ class PoiListFragment : Fragment(), PoiListAdapter.OnItemClickListener {
                     val poi = poiListAdapter.currentList[viewHolder.adapterPosition]
                     viewModel.onPoiSwiped(poi)
                 }
-
             }).attachToRecyclerView(poiListRecyclerView)
         }
 
         viewModel.pois.observe(viewLifecycleOwner) {
             poiListAdapter.submitList(it)
         }
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.tasksEvent.collect { event ->
                 when (event) {
                     is PoiViewModel.PoiEvents.NavigateToEditPoiScreen -> {
-
                         val action =
                             PoiListFragmentDirections.actionPoiListFragment2ToEditPoiFragment(
+                                event.poi
+                            )
+                        findNavController().navigate(action)
+                    }
+                    is PoiViewModel.PoiEvents.NavigateToMapScreen -> {
+                        val action =
+                            PoiListFragmentDirections.actionPoiListFragment2ToMapFragment2(
                                 event.poi
                             )
                         findNavController().navigate(action)
@@ -82,8 +86,12 @@ class PoiListFragment : Fragment(), PoiListAdapter.OnItemClickListener {
         }
     }
 
-    override fun onItemClick(poi: Poi) {
-        viewModel.onPoiSelected(poi)
+    override fun onDetailsItemClick(poi: Poi) {
+        viewModel.onPoiDetailsSelected(poi)
+    }
+
+    override fun onZoomLocationItemClick(poi: Poi) {
+        viewModel.onPoiZoomSelected(poi)
     }
 
 }

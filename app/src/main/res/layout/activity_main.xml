@@ -27,6 +27,7 @@
             android:layout_marginStart="0dp"
             app:itemBackground="@color/colorDarkGrey"
             app:itemIconTint="@drawable/item_tint"
+            app:itemIconSize="26dp"
             android:background="?android:attr/windowBackground"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
