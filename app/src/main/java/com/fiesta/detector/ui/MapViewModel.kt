@@ -18,31 +18,40 @@ class MapViewModel @ViewModelInject constructor(
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
     val pois = poiDao.getPois().asLiveData()
+    val poi = state.get<Poi>("poi")
     private val mapEventChannel = Channel<MapEvents>()
     val mapsEvent = mapEventChannel.receiveAsFlow()
 
-    fun onPoiSwiped(poi: Poi) = viewModelScope.launch {
-        poiDao.delete(poi)
-    }
+    fun onSaveButtonClick(name: String, poiLatLang: LatLng, uri: String) {
 
-fun onSaveButtonClick(name: String, poiLatLang: LatLng, uri: String) {
-
-    if (name.isBlank()) {
-        showInvalidInputMessage("Nazwa nie może być pusta")
-    } else {
-        viewModelScope.launch {
-            poiDao.insert(Poi(name, "bark opisu", poiLatLang.latitude, poiLatLang.longitude, uri))
-            showInvalidInputMessage("Notatka zapisana")
+        if (name.isBlank()) {
+            showInvalidInputMessage("Nazwa nie może być pusta")
+        } else {
+            viewModelScope.launch {
+                poiDao.insert(
+                    Poi(
+                        name,
+                        "bark opisu",
+                        poiLatLang.latitude,
+                        poiLatLang.longitude,
+                        uri
+                    )
+                )
+                showInvalidInputMessage("Notatka zapisana")
+            }
         }
     }
 
-}
-
+    fun onPoiSelected(poi: Poi) = viewModelScope.launch {
+        mapEventChannel.send(MapEvents.NavigateToEditPoiScreen(poi))
+    }
 
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
         mapEventChannel.send(MapEvents.ShowInputMessage(text))
     }
+
     sealed class MapEvents {
         data class ShowInputMessage(val message: String) : MapEvents()
+        data class NavigateToEditPoiScreen(val poi: Poi) : MapEvents()
     }
 }

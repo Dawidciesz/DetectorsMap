@@ -35,7 +35,6 @@ class EditPoiFragment : androidx.fragment.app.Fragment(R.layout.edit_poi_fragmen
             editPoiName.addTextChangedListener {
                 viewModel.poiName = it.toString()
             }
-
             editPoiDescription.addTextChangedListener {
                 viewModel.poiDescription = it.toString()
             }
@@ -43,16 +42,15 @@ class EditPoiFragment : androidx.fragment.app.Fragment(R.layout.edit_poi_fragmen
                 viewModel.onSaveButtonClick()
             }
             editSetImage.setOnClickListener {
-
-                val gallery = Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-                gallery.flags = (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+                val gallery = Intent(
+                    Intent.ACTION_OPEN_DOCUMENT,
+                    MediaStore.Images.Media.INTERNAL_CONTENT_URI
+                )
+                gallery.flags =
+                    (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
                 resultLauncher.launch(gallery)
-
-
-
             }
         }
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.editPoiEvent.collect { event ->
                 when (event) {
@@ -63,17 +61,17 @@ class EditPoiFragment : androidx.fragment.app.Fragment(R.layout.edit_poi_fragmen
                 }
             }
         }
-
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-//                uri =
-                context?.contentResolver?.takePersistableUriPermission(data?.data!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-//                testfoto.setImageURI(data?.data)
-                viewModel.onSetImageButtonClick(data?.data.toString())
-                Snackbar.make(requireView(), data?.data.toString(), Snackbar.LENGTH_LONG).show()
-
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    context?.contentResolver?.takePersistableUriPermission(
+                        data?.data!!,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                    viewModel.onSetImageButtonClick(data?.data.toString())
+                    Snackbar.make(requireView(), data?.data.toString(), Snackbar.LENGTH_LONG).show()
+                }
             }
-        }
     }
 }
