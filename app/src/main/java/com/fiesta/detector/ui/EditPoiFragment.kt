@@ -31,7 +31,6 @@ class EditPoiFragment : androidx.fragment.app.Fragment(R.layout.edit_poi_fragmen
         binding.apply {
             editPoiName.setText(viewModel.poiName)
             editPoiDescription.setText(viewModel.poiDescription)
-            editImage.setImageURI(Uri.parse(viewModel.poi?.uri))
             editPoiName.addTextChangedListener {
                 viewModel.poiName = it.toString()
             }
