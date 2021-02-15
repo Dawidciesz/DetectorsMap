@@ -1,4 +1,4 @@
-package com.fiesta.detector.fragments
+package com.fiesta.detector.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.fiesta.detector.adapters.PoiListAdapter
 import com.fiesta.detector.data.Poi
 import com.fiesta.detector.databinding.ListFragmentBinding
-import com.fiesta.detector.ui.PoiViewModel
+import com.fiesta.detector.fragments.PoiListFragmentDirections
 import com.fiesta.detector.utility.SwipeToDeleteCallback
 import com.fiesta.detector.utility.exhaustive
 import dagger.hilt.android.AndroidEntryPoint

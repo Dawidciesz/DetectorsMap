@@ -12,9 +12,9 @@
             android:title="@string/title_favorite_list"/>
 
     <item
-            android:id="@+id/navigation_dashboard"
-            android:icon="@drawable/home_icon"
-            android:title="@string/title_Home"/>
+            android:id="@+id/settingsFragment"
+            android:icon="@drawable/ic_baseline_more_vert_24"
+            android:title="@string/more"/>
 
 <!--    <item-->
 <!--            android:id="@+id/navigation_pictures"-->

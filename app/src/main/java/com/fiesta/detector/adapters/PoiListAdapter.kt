@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.fiesta.detector.R
 import com.fiesta.detector.data.Poi
 import com.fiesta.detector.databinding.ListItemBinding
 
@@ -35,12 +36,10 @@ class PoiListAdapter(
                 if (position != RecyclerView.NO_POSITION) {
                     val poi = getItem(position)
                     itemName.text = poi.name
-                    itemShowDetails.text = "szczegoly"
+                    itemShowDetails.text = itemShowDetails.context.getString(R.string.details)
                     itemShowDetails.setOnClickListener(View.OnClickListener {
-                        detailsListener.onDetailsItemClick(poi)
-                    }
-                    )
-                    itemShowOnMap.text = "wyszukaj"
+                        detailsListener.onDetailsItemClick(poi) })
+                    itemShowOnMap.text = itemShowOnMap.context.getString(R.string.search)
                     itemShowOnMap.setOnClickListener(View.OnClickListener {
                         zoomLocationListener.onZoomLocationItemClick(poi)
                     })
