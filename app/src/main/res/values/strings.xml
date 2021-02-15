@@ -12,4 +12,9 @@
     <string name="cancel">anuluj</string>
     <string name="set_findings_name">Wpisz nazwę znaleziska</string>
     <string name="set_findings_description">Wpisz opis znaleziska</string>
+    <string name="dawid_cieszewski">Dawid Cieszewski</string>
+    <string name="author">Autor</string>
+    <string name="more">more</string>
+    <string name="details">szczegoly</string>
+    <string name="search">wyszukaj</string>
 </resources>
