@@ -6,7 +6,7 @@
         app:startDestination="@id/mapFragment2">
     <fragment
             android:id="@+id/mapFragment2"
-            android:name="com.fiesta.detector.fragments.MapFragment"
+            android:name="com.fiesta.detector.ui.MapFragment"
             android:label="map_fragment"
             tools:layout="@layout/map_fragment" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
             android:id="@+id/poiListFragment2"
-            android:name="com.fiesta.detector.fragments.PoiListFragment"
+            android:name="com.fiesta.detector.ui.PoiListFragment"
             android:label="list_fragment"
             tools:layout="@layout/list_fragment" >
         <action
@@ -40,4 +40,8 @@
                 app:nullable="true"
                 android:defaultValue="@null" />
     </fragment>
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.fiesta.detector.ui.SettingsFragment"
+            android:label="SettingsFragment" />
 </navigation>
