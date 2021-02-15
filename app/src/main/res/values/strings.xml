@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="app_name">Notatnik detektorysty</string>
+    <string name="title_map">Map</string>
+    <string name="title_Home">Home</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_pictures">Pictures</string>
+    <string name="title_favorite_list">Favorite List</string>
+    <string name="title_settings">Settings</string>
+    <string name="add_new_poi">Dodać nowe znalezisko?</string>
+    <string name="set_name">wpisz nazwę</string>
+    <string name="add">dodaj</string>
+    <string name="cancel">anuluj</string>
+    <string name="set_findings_name">Wpisz nazwę znaleziska</string>
+    <string name="set_findings_description">Wpisz opis znaleziska</string>
 </resources>
